@@ -11,8 +11,7 @@ const Board = ({ShowSorting, AddEvent}) => {
                 ShowSorting && <Sorting />
             }
             {
-                AddEvent ?
-                <Event /> :
+                AddEvent ? <Event /> :
                 <>
                 <div className="board__events">
                     <Card />
