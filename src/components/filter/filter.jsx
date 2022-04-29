@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Filter = ({ShowButton}) => {
     return (
@@ -54,11 +55,14 @@ const Filter = ({ShowButton}) => {
 
           {
             ShowButton &&
-            <button
-            name="control"
-            className="btn-add">
-              Создать
-            </button>
+            <Link to='/event'>
+              <button
+                name="control"
+                className="btn-add">
+                  Создать
+              </button>
+            </Link>
+            
           }
           
         </section>
