@@ -4,16 +4,14 @@ import { Link } from 'react-router-dom';
 const Notfound = () => {
     return (
         <>
-            <h1>
+            <h3>
                 404 PAGE NOT FOUND
-            </h1>
+            </h3>
             <p>
                 Кажется, вы заблудились...
             </p>
-            <Link to='/'>
-                <button type='button'> 
+            <Link to='/' type='button'> 
                     Вернутся назад
-                </button>
             </Link>
             
 
