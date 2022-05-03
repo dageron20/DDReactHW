@@ -4,20 +4,20 @@ import Loadmore from "../load-more/load-more";
 import Sorting from "../sorting/sorting";
 import Event from "../event/event";
 
-const Board = ({ShowSorting, AddEvent}) => {
+
+const Board = ({ShowSorting, AddEvent, events}) => {
     return (
-        <section class="board">
+        <section className="board">
             {
                 ShowSorting && <Sorting />
             }
             {
-                AddEvent ?
-                <Event /> :
+                AddEvent ? <Event events={events}/> :
                 <>
-                <div className="board__events">
-                    <Card />
-                </div>
-                <Loadmore />
+                    <div className="board__events">
+                        { events.map(event => <Card {...event} key={event._id} events={events}/> )}
+                    </div>
+                    <Loadmore />
                 </>           
             }
             

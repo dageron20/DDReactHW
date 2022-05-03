@@ -2,16 +2,16 @@ import React from 'react';
 import Header from '../../components/header/header';
 import Filter from '../../components/filter/filter';
 import Board from '../../components/board/board';
-import Event from '../../components/event/event';
-import { AppRoute } from '../../const';
+import { useLocation } from 'react-router-dom';
 
-const Form = () => {
+const Form = ({events}) => {
+    const location = useLocation();
     return (
         <>
-        <Header mode={AppRoute.MAIN} />
+        <Header mode={location.pathname} />
         <section className='main__wrapper'>
             <Filter ShowButton={false} />
-            <Board AddEvent={true}/>
+            <Board AddEvent={true} events={events} />
         </section>
         </>
     )
