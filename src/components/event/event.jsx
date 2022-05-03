@@ -1,16 +1,18 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { AppRoute } from '../../const';
 import moment from 'moment';
 import 'moment/locale/ru';
+import { events } from '../../components/store/index';
 
 
-const Event = ({events}) => {
+const Event = () => {
   const { id } = useParams();
   const curEvent = 
   ( 
     id ?
-    events.filter(item => item._id === id)[0] : {
+    events.data.filter(item => item._id === id)[0] : {
       theme:'Введите вашу тему',
       comment:'Введите ваш коммент',
       date: new Date()
@@ -28,10 +30,39 @@ const Event = ({events}) => {
     setEvent({...event, [name]: value})
   }
 
+  const handleToEdit = (evt) => {
+    evt.preventDefault();
+    events.editEvent({
+      id: curEvent._id,
+      theme: event.theme,
+      comment: event.comment,
+      date: event.date,
+      favorite: event.favorite,
+      archive: event.archive,
+    });
+    document.location.href = AppRoute.MAIN;
+  }
+
+  const handleToAdd = (evt) => {
+    evt.preventDefault();
+    events.addEvent({
+      id: curEvent._id,
+      theme: event.theme,
+      comment: event.comment,
+      date: event.date,
+      favorite: event.favorite,
+      archive: event.archive,
+    });
+    document.location.href = AppRoute.MAIN;
+  }
+
   console.log(event);
 
     return (
-        <form className="board__form">
+        <form 
+        className="board__form"
+        onSubmit={id ? handleToEdit : handleToAdd}
+        >
             <h2 className="board__title">{id ? 'Редактирование события' : 'Добавление события'}</h2>
             <fieldset className="board__field board__field--theme">
               <label htmlFor="theme" className="board__label board__label--theme">Тема:</label>

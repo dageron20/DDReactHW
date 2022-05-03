@@ -3,16 +3,18 @@ import Board from '../../components/board/board';
 import Header from '../../components/header/header';
 import { useLocation } from 'react-router-dom';
 
-const Archive = ({events}) => {
+import { events } from '../../components/store/index'
 
+const Archive = () => {
+
+    const { archiveData } = events
     const { pathname } = useLocation();
-    const archiveEvents = events.filter(x => x.archive);
 
     return (
         <>
             <Header mode={pathname}/>
             <section className='main__wrapper'>
-                <Board ShowSorting={false} events={archiveEvents} />
+                <Board ShowSorting={false} events={archiveData} />
             </section>
         </>
     )

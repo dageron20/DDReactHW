@@ -3,14 +3,18 @@ import Header from '../../components/header/header';
 import Filter from '../../components/filter/filter';
 import Board from '../../components/board/board';
 import { AppRoute } from '../../const';
+import { events } from '../../components/store/index';
 
-const Main = ({events}) => {
+const Main = () => {
+
+    const { notArchiveData } = events;
+
     return (
         <>
             <Header mode={AppRoute.MAIN}/>
             <section className="main__wrapper">
                 <Filter ShowButton={true} />
-                <Board events={events} ShowSorting={true} />
+                <Board events={notArchiveData} ShowSorting={true} />
             </section>
         </>
     )
