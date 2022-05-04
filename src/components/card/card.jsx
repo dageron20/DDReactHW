@@ -45,7 +45,6 @@ const Card = ({_id, theme, comment, date, favorite, archive }) => {
                          to={`/event/${_id}`}
                          type="button" 
                          className="card__btn card__btn--edit"
-
                          >
                             Редактировать
                         </Link>

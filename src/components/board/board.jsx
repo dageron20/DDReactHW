@@ -6,6 +6,13 @@ import Event from "../event/event";
 
 
 const Board = ({ShowSorting, AddEvent, events}) => {
+
+    const [step, setStep] = React.useState(3); 
+
+    const handleLoadMore = () => {
+        events.length >= step ? setStep(step + 1) : setStep(events.length);
+    }
+
     return (
         <section className="board">
             {
@@ -15,9 +22,9 @@ const Board = ({ShowSorting, AddEvent, events}) => {
                 AddEvent ? <Event events={events}/> :
                 <>
                     <div className="board__events">
-                        { events.map(event => <Card {...event} key={event._id} events={events}/> )}
+                        { events.slice(0, step).map(event => <Card {...event} key={event._id} events={events}/> )}
                     </div>
-                    <Loadmore />
+                    <Loadmore handleLoadMore={handleLoadMore} />
                 </>           
             }
             
